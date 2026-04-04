@@ -1,0 +1,23 @@
+
+> wedding-invite@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 6.3s
+  Running TypeScript ...
+Failed to type check.
+
+./src/components/OpeningScreen.tsx:60:80
+Type error: Type '{ className: string; style: CSSProperties; }' is not assignable to type 'IntrinsicAttributes & { className?: string | undefined; }'.
+  Property 'style' does not exist on type 'IntrinsicAttributes & { className?: string | undefined; }'.
+
+  58 | ...d */}
+  59 | ...-bg text-[#c9a029] top-[10%] left-[5%]" />
+> 60 | ...-bg text-[#c9a029] bottom-[5%] right-[3%]" style={{ animationDirection: "reverse", anim...
+     |                                               ^
+  61 | ...
+  62 | ...
+  63 | ...-0 opacity-[0.03]"
+Next.js build worker exited with code: 1 and signal: null

@@ -1,0 +1,440 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════
+   शाही विवाह निमंत्रण – Global Styles
+   Fonts loaded via <link> tags in layout.tsx
+   ═══════════════════════════════════════════ */
+
+/* ── CSS Custom Properties ── */
+:root {
+  --color-royal-teal: #002121;
+  --color-teal-deep: #001717;
+  --color-teal-light: #a2cfce;
+  --color-soft-pink: #1f3939;
+  --color-pink-blush: #142e2e;
+  --color-cream: #001717;
+  --color-ivory: #cce8e7;
+  --color-gold: #c9a029;
+  --color-gold-light: #e9c349;
+  --color-gold-shimmer: #ffe088;
+  --color-mehndi: #af8d11;
+  --color-mauve: #041f1f;
+  --color-maroon: #e9c349; /* Headings become gold on dark backgrounds */
+  --color-maroon-soft: #c9a029;
+  --color-warm-bg: #001717;
+  --color-card-bg: rgba(0, 33, 33, 0.35);
+
+  --font-heading: 'Noto Serif Devanagari', serif;
+  --font-body: 'Tiro Devanagari Hindi', 'Noto Serif Devanagari', serif;
+
+  --shadow-royal: 0 40px 60px rgba(0, 0, 0, 0.5), 0 20px 30px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 40px 40px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(201, 160, 41, 0.15);
+  --shadow-glow: 0 0 40px rgba(201, 160, 41, 0.15);
+  --shadow-gold-inner: inset 0 0 20px rgba(201, 160, 41, 0.2);
+}
+
+/* ── Global Resets ── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #001111;
+  background-image: 
+    radial-gradient(ellipse at top center, rgba(0, 33, 33, 0.9) 0%, rgba(0, 17, 17, 1) 100%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  color: var(--color-ivory);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--color-gold-shimmer);
+  color: #001111;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-cream); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-gold), var(--color-royal-teal));
+  border-radius: 10px;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-maroon);
+}
+p {
+  line-height: 1.9;
+  font-size: 1.05rem;
+}
+
+/* ── Section Wrappers ── */
+.section-wrapper {
+  position: relative;
+  padding: 4rem 1.25rem;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .section-wrapper { padding: 5rem 2rem; }
+}
+@media (min-width: 1024px) {
+  .section-wrapper { padding: 6rem 4rem; }
+}
+
+/* ── Gold Divider ── */
+.gold-divider {
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  margin: 1.5rem auto;
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATION KEYFRAMES
+   ═══════════════════════════════════════════ */
+
+/* Shimmer sweep on text */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.text-shimmer {
+  background: linear-gradient(90deg,
+    var(--color-gold) 0%, var(--color-gold-shimmer) 25%,
+    var(--color-gold-light) 50%, var(--color-gold-shimmer) 75%,
+    var(--color-gold) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Dark Theme specific overrides for sections */
+.dark-section {
+  background: radial-gradient(ellipse at center, var(--color-royal-teal) 0%, var(--color-teal-deep) 100%);
+  color: var(--color-ivory);
+}
+
+.dark-section .heading-ornament {
+  color: var(--color-gold-light);
+}
+
+.dark-section .royal-card {
+  background: rgba(255, 253, 245, 0.05);
+  border: 1px solid rgba(201, 160, 41, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.dark-section .royal-card h3 {
+  color: var(--color-gold-shimmer) !important;
+}
+
+.dark-section .royal-card p {
+  color: var(--color-ivory) !important;
+}
+
+/* Floating petals */
+@keyframes floatPetal {
+  0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(110vh) translateX(80px) rotate(720deg); opacity: 0; }
+}
+@keyframes floatPetalReverse {
+  0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(110vh) translateX(-60px) rotate(-540deg); opacity: 0; }
+}
+
+/* Glow pulse */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(201, 160, 41, 0.15); }
+  50% { box-shadow: 0 0 50px rgba(201, 160, 41, 0.35), 0 0 80px rgba(201, 160, 41, 0.1); }
+}
+
+/* Button breathing glow */
+@keyframes btnBreath {
+  0%, 100% { box-shadow: 0 0 15px rgba(201, 160, 41, 0.3), 0 0 30px rgba(201, 160, 41, 0.1); }
+  50% { box-shadow: 0 0 25px rgba(201, 160, 41, 0.5), 0 0 60px rgba(201, 160, 41, 0.2), 0 0 90px rgba(201, 160, 41, 0.05); }
+}
+
+/* Mandala spin */
+@keyframes mandalaSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Slow drift */
+@keyframes slowDrift {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  25% { transform: translateY(-8px) translateX(4px); }
+  50% { transform: translateY(-3px) translateX(-6px); }
+  75% { transform: translateY(-10px) translateX(2px); }
+}
+
+/* Card open */
+@keyframes cardOpen {
+  0% { transform: perspective(1200px) rotateY(-90deg); opacity: 0; }
+  60% { transform: perspective(1200px) rotateY(8deg); opacity: 1; }
+  100% { transform: perspective(1200px) rotateY(0); opacity: 1; }
+}
+.card-open {
+  animation: cardOpen 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform-origin: left center;
+}
+
+/* Gold border scan */
+@keyframes borderScan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Ornament draw */
+@keyframes ornamentDraw {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* Twinkle */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Float up down */
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* Light bloom */
+@keyframes lightBloom {
+  0%, 100% { opacity: 0.04; transform: scale(1); }
+  50% { opacity: 0.08; transform: scale(1.05); }
+}
+
+/* ═══════════════════════════════════════════
+   COMPONENT STYLES
+   ═══════════════════════════════════════════ */
+
+/* Paper texture */
+.paper-texture {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(201, 160, 41, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(244, 194, 194, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(26, 92, 94, 0.02) 0%, transparent 50%);
+  background-color: var(--color-cream);
+}
+
+/* Royal Card */
+.royal-card {
+  background: var(--color-card-bg);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(201, 160, 41, 0.2);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+.royal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(201, 160, 41, 0.15), 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+.royal-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 5%, var(--color-gold) 30%, var(--color-gold-shimmer) 50%, var(--color-gold) 70%, transparent 95%);
+  background-size: 200% 100%;
+  animation: borderScan 4s ease-in-out infinite;
+}
+.royal-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 5%, var(--color-gold) 30%, var(--color-gold-shimmer) 50%, var(--color-gold) 70%, transparent 95%);
+  background-size: 200% 100%;
+  animation: borderScan 4s ease-in-out infinite reverse;
+}
+
+/* Heading ornament */
+.heading-ornament {
+  position: relative;
+  display: inline-block;
+  padding: 0 2.5rem;
+}
+.heading-ornament::before,
+.heading-ornament::after {
+  content: '✦';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-gold);
+  font-size: 0.9rem;
+  animation: twinkle 2s ease-in-out infinite;
+}
+.heading-ornament::before { left: 0; animation-delay: 0s; }
+.heading-ornament::after { right: 0; animation-delay: 1s; }
+
+/* Royal Button */
+.royal-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2.5rem;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--color-teal-deep);
+  background: linear-gradient(135deg, #f5e6a3, #c9a029, #e8c84a);
+  border: 2px solid var(--color-gold);
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: btnBreath 3s ease-in-out infinite;
+}
+.royal-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; right: 0; bottom: 0;
+  width: 50%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s;
+}
+.royal-btn:hover::before {
+  left: 120%;
+}
+.royal-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 30px rgba(201, 160, 41, 0.5), 0 0 60px rgba(201, 160, 41, 0.2);
+}
+.royal-btn:active {
+  transform: scale(0.98);
+}
+
+/* Royal Button Outline variant */
+.royal-btn-outline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2.5rem;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--color-gold);
+  background: transparent;
+  border: 2px solid var(--color-gold);
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.royal-btn-outline:hover {
+  background: linear-gradient(135deg, #f5e6a3, #c9a029);
+  color: var(--color-teal-deep);
+  transform: scale(1.06);
+  box-shadow: 0 0 30px rgba(201, 160, 41, 0.4), 0 0 60px rgba(201, 160, 41, 0.15);
+}
+
+/* Glassmorphism */
+.glass-card {
+  background: rgba(0, 33, 33, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 160, 41, 0.2);
+  box-shadow: var(--shadow-card);
+}
+
+/* Glow Utilities */
+.glow-gold {
+  filter: drop-shadow(0 0 8px rgba(201, 160, 41, 0.4));
+}
+.glow-text-gold {
+  text-shadow: 0 0 12px rgba(245, 230, 163, 0.4);
+}
+
+/* Floating Animation */
+@keyframes floating {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+/* Mandala spinner bg */
+.mandala-bg {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  opacity: 0.025;
+  animation: mandalaSpin 60s linear infinite;
+  pointer-events: none;
+}
+
+/* Section divider with ornament */
+.section-ornament-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 3rem 0;
+  opacity: 0.4;
+}
+.section-ornament-divider span {
+  color: var(--color-gold);
+}
+.section-ornament-divider .line {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold));
+}
+.section-ornament-divider .line-r {
+  background: linear-gradient(90deg, var(--color-gold), transparent);
+}
+
+/* Light bloom circle */
+.light-bloom {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 160, 41, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  animation: lightBloom 6s ease-in-out infinite;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  p { font-size: 0.95rem; }
+  .royal-card { padding: 1.75rem 1.25rem; border-radius: 16px; }
+  .royal-btn { padding: 0.75rem 2rem; font-size: 0.9rem; }
+  .mandala-bg { width: 250px; height: 250px; }
+}
