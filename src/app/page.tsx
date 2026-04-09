@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import OpeningScreen from "@/components/OpeningScreen";
 import InvitationReveal from "@/components/InvitationReveal";
@@ -16,7 +16,6 @@ import Footer from "@/components/Footer";
 import FloatingPetals from "@/components/FloatingPetals";
 import CountdownTimer from "@/components/CountdownTimer";
 import ScrollToTop from "@/components/ScrollToTop";
-import { useEffect, useRef } from "react";
 
 export default function Home() {
   const [isOpened, setIsOpened] = useState(false);

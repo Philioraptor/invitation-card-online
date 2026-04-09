@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 interface PetalData {
@@ -21,7 +21,6 @@ export default function FloatingPetals() {
   const [activePetals, setActivePetals] = useState<PetalData[]>([]);
   const [landedPetals, setLandedPetals] = useState<PetalData[]>([]);
   const shouldReduceMotion = useReducedMotion();
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const colors = [
     "rgba(255, 182, 193, 0.7)", // Pink
@@ -146,33 +145,6 @@ export default function FloatingPetals() {
         <div className="absolute bottom-0 w-full h-12 bg-gradient-to-t from-[#c9a02915] to-transparent" />
       </div>
     </>
-  );
-}
-
-function PetalShape({ type, size, color, rotate }: { type: PetalData["type"], size: number, color: string, rotate: number }) {
-  if (type === "leaf_long") {
-    return (
-      <svg width={size} height={size * 2} viewBox="0 0 100 200" fill={color} style={{ transform: `rotate(${rotate}deg)` }}>
-        <path d="M50 0C50 0 90 70 90 130C90 168.66 67.6142 200 50 200C32.3858 200 10 168.66 10 130C10 70 50 0 50 0Z" />
-        <path d="M50 0V200" stroke="rgba(0,0,0,0.05)" strokeWidth="2" />
-      </svg>
-    );
-  }
-  if (type === "leaf_round") {
-    return (
-      <svg width={size} height={size} viewBox="0 0 100 100" fill={color} style={{ transform: `rotate(${rotate}deg)` }}>
-        <path d="M50 5C80 5 95 30 95 50C95 70 80 95 50 95C20 95 5 70 5 50C5 30 20 5 50 5Z" />
-        <path d="M50 5V95" stroke="rgba(0,0,0,0.05)" strokeWidth="2" />
-      </svg>
-    );
-  }
-  if (type === "star") {
-    return (
-      <div className="rounded-full shadow-lg" style={{ width: size, height: size, backgroundColor: 'rgba(212, 175, 55, 0.8)', boxShadow: '0 0 15px rgba(212, 175, 55, 0.4)' }} />
-    );
-  }
-  return (
-    <div className="shadow-sm" style={{ width: size, height: size * 1.3, backgroundColor: color, borderRadius: "60% 10% 60% 40%", transform: `rotate(${rotate}deg)` }} />
   );
 }
 
