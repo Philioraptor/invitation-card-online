@@ -76,6 +76,7 @@ function MapIllustrationSVG() {
 
       {/* Pulsing ring */}
       <motion.circle cx="200" cy="55" r="16" fill="none" stroke="#c9a029" strokeWidth="1"
+        initial={{ r: 16, opacity: 0.4 }}
         animate={{ r: [16, 25, 16], opacity: [0.4, 0, 0.4] }}
         transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
       />

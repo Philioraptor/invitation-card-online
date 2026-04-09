@@ -20,14 +20,7 @@ import { useEffect, useRef } from "react";
 
 export default function Home() {
   const [isOpened, setIsOpened] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    // Preload the audio object on mount
-    audioRef.current = new Audio("/wedding-music.mp3");
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.5; // Start at 50% volume for a gentle experience
-  }, []);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleOpen = () => {
     setIsOpened(true);
@@ -42,6 +35,14 @@ export default function Home() {
   return (
     <main className="relative">
       <FloatingPetals />
+
+      {/* Hidden audio element for managed background music */}
+      <audio 
+        ref={audioRef} 
+        src="/wedding-music.mp3" 
+        loop 
+        preload="auto" 
+      />
 
       {/* Opening Screen overlay */}
       <AnimatePresence mode="wait">
