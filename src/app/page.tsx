@@ -41,6 +41,8 @@ export default function Home() {
 
   return (
     <main className="relative">
+      <FloatingPetals />
+
       {/* Opening Screen overlay */}
       <AnimatePresence mode="wait">
         {!isOpened && (
@@ -66,9 +68,6 @@ export default function Home() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
-              {/* Floating petals layer */}
-              <FloatingPetals />
-
               {/* Floating Controls */}
               <ScrollToTop />
 
